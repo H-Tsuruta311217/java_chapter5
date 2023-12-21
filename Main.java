@@ -42,19 +42,46 @@
 // }
 
 
+// public class Main {
+//   public static void main(String[] args) {
+//     int quizNum = 5;
+//     CalcQuiz [] quiz = new CalcQuiz[quizNum];
+
+//     for (int i = 0; i < quizNum; i++) {
+//       quiz[i] = new MistakeQuiz();
+//     }
+//     for (int i = 0; i < quizNum; i++) {
+//       System.out.println("問" + i + ":" + quiz[i].getQuestion());
+//     }
+//     System.out.println("------------");
+//     for (int i = 0; i < quizNum; i++) {
+//       System.out.println("答" + i + ":" + quiz[i].getAnswer());
+//     }
+//   }
+// }
+
+import java.util.Random;
 public class Main {
   public static void main(String[] args) {
-    int quizNum = 5;
-    CalcQuiz [] quiz = new CalcQuiz[quizNum];
+    Random rnd = new Random();
+    int quizNum = 5;       //問題数
+    CalcQuiz [] quiz = new CalcQuiz[quizNum];      //問題を作るインスタンスを入れる配列
 
     for (int i = 0; i < quizNum; i++) {
-      quiz[i] = new MistakeQuiz();
+      int qID = rnd.nextInt(3);       //ランダムに１つ選ぶ
+      if (qID == 0) {
+        quiz[i] = new MushikuiQuiz();      //虫食いクイズ
+      } else if (qID == 1) {
+        quiz[i] = new MistakeQuiz();      //間違い探しクイズ
+      } else {
+        quiz[i] = new TanukiQuiz();       //たぬきの言葉クイズ
+      }
     }
-    for (int i = 0; i < quizNum; i++) {
+    for (int i = 0; i < quizNum; i++) {        //全ての問題を表示する
       System.out.println("問" + i + ":" + quiz[i].getQuestion());
     }
     System.out.println("------------");
-    for (int i = 0; i < quizNum; i++) {
+    for (int i = 0; i < quizNum; i++) {        //全ての答えを表示する
       System.out.println("答" + i + ":" + quiz[i].getAnswer());
     }
   }
